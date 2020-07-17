@@ -94,9 +94,11 @@ data=model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['acc
 hist = model.fit(np.array(train_x), np.array(train_y), epochs=200, batch_size=5, verbose=1)
 model.save('chatbot_model.h5', hist)
 print("model created")
-loss, acc = model.evaluate(np.array(train_x), np.array(train_y), verbose=1)
-acc = str(acc)
-f=open("accuracy.txt","w")
-f.write(acc)
-f.close()
+loss, accuracy = model.evaluate(np.array(train_x), np.array(train_y), verbose=1)
+
+import os
+if accuracy < 0.8:
+    os.system("curl --user 'admin:admin@123' http://192.168.0.111:8080/job/task3_job4/build?token=tweak")
+else:
+    os.system("curl --user 'admin:admin@123' http://192.168.0.111:8080/job/task3_job5/build?token=notify")
 
