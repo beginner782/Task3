@@ -1,4 +1,4 @@
-accuracy=0.7
+accuracy=0.9
 
 import os
 
